@@ -25,7 +25,7 @@ class HomeController: UIViewController {
     }
     
     func configureViewModel() {
-        
+        viewModel.getMovies()
         viewModel.error = { errorMessage in
             print("Error: \(errorMessage)")
         }
@@ -37,11 +37,14 @@ class HomeController: UIViewController {
 
 extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        viewModel.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! HomeCell
+        let item = viewModel.items[indexPath.item]
+        cell.configure(title: item.title, movies: item.movies)
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

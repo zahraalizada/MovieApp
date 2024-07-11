@@ -10,7 +10,7 @@ import Alamofire
 
 class NetworkManager {    
     static let baseURL = "https://api.themoviedb.org/3/"
-    static let header: HTTPHeaders = ["Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjI1MzQxNmZhYzBjZDI0NzYyOTFlYjMzYzkyYmViNyIsInN1YiI6IjYyNDNmMjAyYzUwYWQyMDA1Y2RlOTVmMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0dUMhxX4qBZrY_NXSEf9cWjAnzB-Xl1Qu5rj9CzET7k"]
+    static let header: HTTPHeaders = ["Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMTZlZjAzNWI4ZjIxY2UwYThmNjY5MTViYWI4ZTVmMyIsIm5iZiI6MTcyMDYyNzEyMS43NDIxNTUsInN1YiI6IjY2OGVhMTcyZWVhZjdlYWZkMjY5OWM2NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HmDbfU0tkW01u7IyvpF4TUI1h8p39zGw5U1sb496Q3U"]
     
     static func request<T: Codable>(model: T.Type,
                                     endpoint: String,
