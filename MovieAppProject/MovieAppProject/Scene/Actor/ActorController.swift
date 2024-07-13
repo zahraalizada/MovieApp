@@ -1,47 +1,54 @@
 //
-//  HomeCell.swift
+//  ActorController.swift
 //  MovieAppProject
 //
-//  Created by Zahra Alizada on 10.07.24.
+//  Created by Zahra Alizada on 13.07.24.
 //
 
 import UIKit
 
-class HomeCell: UICollectionViewCell {
+class ActorController: UIViewController {
 
     @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var categoryLabel: UILabel!
     
-    var movies = [MovieResult]()
+    let viewModel = ActorViewModel()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        collection.register(UINib(nibName: "TopImageBottomLabelCell", bundle: nil), forCellWithReuseIdentifier: "TopImageBottomLabelCell")
-        
-    }
-    
-    func configure(title: String, movies: [MovieResult]) {
-        categoryLabel.text = title
-        self.movies = movies
-    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
+        configureUI()
+        configureViewModel()
+    }
+    
+    func configureUI() {
+        title = "Actor List"
+        collection.register(UINib(nibName: "TopImageBottomLabelCell", bundle: nil), forCellWithReuseIdentifier: "TopImageBottomLabelCell")
+    }
+    
+    func configureViewModel() {
+        viewModel.getActorList()
+        viewModel.error = { errorMessage in
+            print("Error: \(errorMessage)")
+        }
+        viewModel.success = {
+            self.collection.reloadData()
+        }
+    }
 }
 
-extension HomeCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+extension ActorController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movies.count
+        viewModel.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopImageBottomLabelCell", for: indexPath) as! TopImageBottomLabelCell
-        cell.configure(data: movies[indexPath.item])
+        cell.configure(data: viewModel.items[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: 167, height: collectionView.frame.height)
+        .init(width: collectionView.frame.width/2 - 10, height: 220)
     }
-    
-    
 }

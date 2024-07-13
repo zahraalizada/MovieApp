@@ -8,17 +8,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Actor Controller-->
         <scene sceneID="o5y-YY-LSq">
             <objects>
-                <viewController id="SSJ-7u-xj1" sceneMemberID="viewController">
+                <viewController id="SSJ-7u-xj1" customClass="ActorController" customModule="MovieAppProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zhT-Tz-0aj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yeN-vK-XIt">
+                                <rect key="frame" x="16" y="103" width="361" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fdy-G6-kA4">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="SSJ-7u-xj1" id="bfN-cu-1Og"/>
+                                    <outlet property="delegate" destination="SSJ-7u-xj1" id="VyQ-jt-skx"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eer-O3-Gcw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yeN-vK-XIt" firstAttribute="leading" secondItem="eer-O3-Gcw" secondAttribute="leading" constant="16" id="BYb-fH-Jjl"/>
+                            <constraint firstItem="yeN-vK-XIt" firstAttribute="top" secondItem="eer-O3-Gcw" secondAttribute="top" id="SQn-5u-1o5"/>
+                            <constraint firstItem="eer-O3-Gcw" firstAttribute="bottom" secondItem="yeN-vK-XIt" secondAttribute="bottom" id="Upe-aE-afD"/>
+                            <constraint firstItem="eer-O3-Gcw" firstAttribute="trailing" secondItem="yeN-vK-XIt" secondAttribute="trailing" constant="16" id="qJi-el-DOH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="d5u-GJ-wxY"/>
+                    <connections>
+                        <outlet property="collection" destination="yeN-vK-XIt" id="EvU-TX-qW1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tB3-eW-wsE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,7 +157,7 @@
         <!--View Controller-->
         <scene sceneID="pny-EB-eHQ">
             <objects>
-                <viewController id="itM-SE-D2J" sceneMemberID="viewController">
+                <viewController id="itM-SE-D2J" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IMf-X0-dPq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -19,48 +19,22 @@ class HomeViewModel {
     var error: ((String) -> Void)?
     
     func getMovies() {
-        getPopularMovies()
-        getNowPlayingMovies()
-        getTopRatedMovies()
+        getMovieDatas(title: "Popular", endpoint: .popularMovie)
+        getMovieDatas(title: "Now Playing", endpoint: .nowPlayingMovie)
+        getMovieDatas(title: "Top Rated", endpoint: .topRatedMovie)
     }
     
-    func getPopularMovies() {
+    func getMovieDatas(title: String, endpoint: Endpoint) {
         NetworkManager.request(model: Movie.self,
-                               endpoint: "movie/popular") { data, errorMessage in
+                               endpoint: endpoint.rawValue) { data, errorMessage in
             if let errorMessage {
                 self.error?(errorMessage)
             } else if let data {
-                self.items.append(.init(title: "Popular", movies: data.results ?? []))
+                self.items.append(.init(title: title, movies: data.results ?? []))
                 self.success?()
             }
         }
     }
-    
-    func getNowPlayingMovies() {
-        NetworkManager.request(model: Movie.self,
-                               endpoint: "movie/now_playing") { data, errorMessage in
-            if let errorMessage {
-                self.error?(errorMessage)
-            } else if let data {
-                self.items.append(.init(title: "Now Playing", movies: data.results ?? []))
-                self.success?()
-            }
-        }
-    }
-    
-    func getTopRatedMovies() {
-        NetworkManager.request(model: Movie.self,
-                               endpoint: "movie/top_rated") { data, errorMessage in
-            if let errorMessage {
-                self.error?(errorMessage)
-            } else if let data {
-                self.items.append(.init(title: "Top Rated", movies: data.results ?? []))
-                self.success?()
-            }
-        }
-    }
-    
-  
     
     
 }

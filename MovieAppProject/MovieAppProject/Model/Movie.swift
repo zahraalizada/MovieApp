@@ -21,7 +21,7 @@ struct Movie: Codable {
 }
 
 // MARK: - MovieResult
-struct MovieResult: Codable {
+struct MovieResult: Codable, TopImageBottomLabelProtocol {
     let adult: Bool?
     let backdropPath: String?
     let genreIDS: [Int]?
@@ -35,6 +35,15 @@ struct MovieResult: Codable {
     let character, creditID: String?
     let order: Int?
     let department, job: String?
+    
+//    Protocol Variables
+    var imageName: String {
+        backdropPath ?? ""
+    }
+    var labelText: String {
+        title ?? ""
+    }
+
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -53,4 +62,6 @@ struct MovieResult: Codable {
         case creditID = "credit_id"
         case order, department, job
     }
+    
+    
 }
